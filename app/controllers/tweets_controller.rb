@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
 
   get "/tweets" do 
     @tweet = Tweets.all
-    erb :tweets
+    erb :"tweets/tweets"
   end
 
   get "/tweet/new" do

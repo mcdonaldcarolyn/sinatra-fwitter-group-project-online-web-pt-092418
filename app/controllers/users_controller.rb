@@ -12,9 +12,13 @@ post "/signup" do
     @errormsg = "not valid"
     erb :signup
   else
-  @user = User.create(:username => params[:username], :email=> params[:email], :password => params[:password])
+  @user = User.create(:username => params[:username], :email=> params[:email], :password => params[:password])  
   session[user_id] = @user.id
-  erb :"/tweets/tweets"
+      if @user.valid?
+        redirect :"/tweets"
+      else
+        erb :signup
+      end
   end
 end
 
